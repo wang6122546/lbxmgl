@@ -1,0 +1,5 @@
+export const pages = {"projects": "施工项目管理", "sites": "施工现场", "risks": "风险库", "types": "项目类型设置", "settings": "基础设置", "reports": "施工项目日报表", "report-settings": "报表基础配置", "responsibilities": "监管责任清单", "project": "项目信息", "partners": "相关方企业管理", "people": "进场人员管理", "certificates": "人员证书管理", "training": "进场培训跟踪", "project-risks": "风险点管理", "plans": "隐患排查计划", "risk-detail": "风险库详情"};
+pages['report-form']='新增';pages['review']='项目审核';pages['audit-records']='相关方安全准入审核记录';
+export const menu = [["projects","施工项目管理","▤"],["sites","施工现场","⚑"],["risks","风险库","▣"],["types","参数配置","⇄"],["reports","施工项目报表","▧"],["responsibilities","监管责任清单","▥"]];
+export const projectPages=["project","partners","people","certificates","training","project-risks","plans"];
+export const href=(key,id)=>`${key}.html${id?`?id=${encodeURIComponent(id)}`:""}`;
