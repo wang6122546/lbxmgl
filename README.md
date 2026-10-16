@@ -1,16 +1,23 @@
 # 施工安全管理前端原型
 
-基于 2026-10-15 有权限访问的测试环境 UI 采集，以原生 HTML / CSS / ES Modules 复刻。包含 18 个独立页面，所有业务记录为虚构演示数据。
+基于 2026-10-15 有权限访问的测试环境 UI 采集，以原生 HTML / CSS / ES Modules 复刻。包含 19 个独立页面，所有业务记录为虚构演示数据。
+
+## 外网访问
+
+- 原型地址：https://wang6122546.github.io/lbxmgl/
+- 源码仓库：https://github.com/wang6122546/lbxmgl
+- GitHub Pages 从 `main` 分支根目录发布，推送后自动更新。
+- 数据仅保存在当前浏览器中，不会同步到其他访客或本地预览站点。
 
 ## 启动
 
 在本目录运行：
 
 ```sh
-python3 -m http.server 8767 --bind 127.0.0.1
+python3 -m http.server 8770 --bind 127.0.0.1
 ```
 
-访问 http://127.0.0.1:8767/ 。当前交付会话已启动此服务。请通过 HTTP 打开，不要使用 file://。
+访问 http://127.0.0.1:8770/ 。请通过 HTTP 打开，不要使用 file://。
 
 无需安装依赖、无需联网、没有 CDN 或原系统 API 调用。IndexedDB 保存业务数据，BroadcastChannel 通知其他本地标签页刷新。浏览器清理站点数据会删除演示修改。
 
