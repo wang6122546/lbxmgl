@@ -38,3 +38,15 @@ body.project-audit-page #page{padding:14px 18px;background:#eef5ff}
 #signature-upload-status{font-size:12px;color:#67c23a;white-space:nowrap}.signature-tools #upload-sign{background:#409eff;color:white;border-color:#409eff}
 
 .opinion-required{font-style:normal;color:#f56c6c}
+/* 项目卡片管理入口：分组蓝色图标按钮。 */
+body[data-page=projects] .card:has(.progress-links){padding-right:450px}
+body[data-page=projects] .card .progress-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;align-content:start;gap:16px;right:20px;top:18px;width:410px;height:auto;margin:0;padding:0;border:0;z-index:1}
+body[data-page=projects] .project-entry-group{min-width:0;border:1px solid #cdd9f4;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+body[data-page=projects] .project-entry-group h4{margin:0 0 3px;text-align:center;color:#242831;font-size:17px;line-height:24px;font-weight:600;white-space:nowrap}
+body[data-page=projects] .project-entry-group .project-entry-button{box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:7px;width:100%;height:30px;min-height:30px;padding:0 9px;border:1px solid #5277ff;border-radius:5px;background:#5277ff;color:white;font-size:14px;line-height:28px;text-decoration:none;white-space:nowrap;cursor:pointer}
+body[data-page=projects] .project-entry-button:hover{background:#4267ed;border-color:#4267ed}body[data-page=projects] .project-entry-button:focus-visible{outline:2px solid #3156db;outline-offset:3px}.project-entry-icon{width:19px;height:19px;flex-shrink:0}
+body[data-page=projects] .card .card-head{position:static}body[data-page=projects] .card:has(.progress-links) .badge{position:absolute;right:0;top:0;z-index:2;border-radius:0 4px 0 4px}
+body[data-page=projects] .card:has(.progress-links):after{pointer-events:none;z-index:0}
+@media(max-width:1450px){body[data-page=projects] .card:has(.progress-links){padding-right:380px}body[data-page=projects] .card .progress-links{width:340px;gap:12px;right:20px}body[data-page=projects] .project-entry-group{padding:10px 8px}body[data-page=projects] .project-entry-group h4{font-size:15px}body[data-page=projects] .project-entry-group .project-entry-button{font-size:13px;padding:0 7px;gap:5px}.project-entry-icon{width:17px;height:17px}}
+/* 终审记录统一为蓝色标题栏 + 紧凑签字/签字时间。 */
+.project-audit-page [data-approval-node=safety-environment]>.approval-signature-record{border:1px dotted #d2e2ff;border-top:0;margin:0;min-height:90px;padding:12px 14px;background:rgba(255,255,255,.65)}.final-saved-opinion{padding:12px 14px;border:1px dotted #d2e2ff;border-top:0;font-size:14px;background:rgba(255,255,255,.65);line-height:1.8}.audit-topbar #download-review-pdf{background:#e6a23c;border-color:#e6a23c;color:white}.audit-topbar #download-review-pdf:hover{background:#ebb563}
