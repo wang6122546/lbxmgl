@@ -20,3 +20,12 @@ test('重命名材料描述不删除或改写历史文件名',()=>{
  grouped.qualification.push(file('new.pdf'));
  assert.deepEqual(project,original);
 });
+
+test('六项审核资料及旧版材料归并保留全部文件',()=>{
+ const old={materialAttachments:{'qualification':[{name:'资质.pdf'}],'staff-documents':[{name:'人员.pdf'}],'risk-deposit':[{name:'票据.pdf'}],'three-measures':[{name:'三措.pdf'}],'construction-drawings':[{name:'图纸.pdf'}]}};
+ const before=JSON.stringify(old),grouped=materialFiles(old);
+ assert.equal(Object.keys(grouped).length,6);
+ assert.deepEqual(grouped['related-materials'].map(f=>f.name),['人员.pdf','票据.pdf','三措.pdf','图纸.pdf']);
+ assert.deepEqual(grouped['staff-qualifications'],[]);
+ assert.equal(JSON.stringify(old),before);
+});

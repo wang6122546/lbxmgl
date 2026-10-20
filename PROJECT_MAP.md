@@ -57,3 +57,6 @@
 ## 本次两级审批优化
 
 新增审核记录入口 `pages/audit-records.html?id=P1`，新增 `config/project-approval.config.js`、`services/approval-service.js`、`components/review-changes.js`。项目新增/编辑/只读详情和审核/记录页面统一使用两级流程与八类材料标题。变更处黄色标记；上传数量、格式、大小沿用基线。详情见 reference/TWO_STEP_CHANGELOG.md。
+
+## 2026-10-20 评审优化
+六项资料、审查跳转、逐项结论、一审履职频次、二审意见、右侧审核时间线及退场/延期弹层均已接入既有页面与Repository。变更、验证及字典边界见 [评审调整](reference/REVIEW_UPDATE_2026-10-20.md)。
