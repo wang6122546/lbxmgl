@@ -36,3 +36,5 @@ body.project-audit-page #page{padding:14px 18px;background:#eef5ff}
 @media(max-width:1500px){.approval-assignment{grid-template-columns:1fr;gap:5px;padding:10px 0;min-height:98px}.approval-assignment>.person-input-group{margin-left:38px;width:calc(100% - 38px)}.approval-assignment:not(:last-child):after{top:38px;bottom:-10px}}
 .company-remove-confirm[popover]{position:fixed;inset:auto;margin:0;color:#606266;border:1px solid #ebeef5}.company-remove-confirm[popover]:not(:popover-open){display:none}
 #signature-upload-status{font-size:12px;color:#67c23a;white-space:nowrap}.signature-tools #upload-sign{background:#409eff;color:white;border-color:#409eff}
+
+.opinion-required{font-style:normal;color:#f56c6c}

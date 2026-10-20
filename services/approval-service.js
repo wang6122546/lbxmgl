@@ -15,7 +15,7 @@ export async function submitApproval(projectId,payload){
  if(!payload.signature)throw Error('请完成签字');
  const uploaded=payload.signatureId?await getSignature(payload.signatureId):null;
  if(!uploaded||uploaded.projectId!==projectId||uploaded.nodeId!==payload.nodeId||uploaded.username!==payload.username||uploaded.image!==payload.signature)throw Error('请先上传当前节点的签字');
- if(payload.result==='不通过'&&!payload.rejectReason?.trim())throw Error('请输入不通过原因');
+ if(payload.result==='不通过'&&!payload.opinion?.trim())throw Error('请输入审核意见');
  if(flow.current===0){
   for(const material of materials){
    if(!payload.checkedMaterials?.includes(material.id)||!payload.materialReviews?.[material.id]?.reviewedAt)throw Error('请先完成全部审查项');
@@ -24,7 +24,7 @@ export async function submitApproval(projectId,payload){
   if(!payload.duties?.leadDept?.frequency||!payload.duties?.supervisor?.frequency)throw Error('请选择履职频次');
  }
  const index=flow.current,node=flow.nodes[index],time=new Date().toISOString();
- const event={nodeId:node.id,nodeLabel:approvalNodes[index].label,reviewer:payload.reviewer,username:payload.username,result:payload.result,opinion:payload.opinion||'',signature:payload.signature,signatureId:uploaded.id,signatureUploadedAt:uploaded.uploadedAt,checkedMaterials:payload.checkedMaterials||[],materialReviews:payload.materialReviews||{},duties:payload.duties||{},rejectReason:payload.rejectReason||'',department:payload.department||'',formVersion:3,time};
+ const event={nodeId:node.id,nodeLabel:approvalNodes[index].label,reviewer:payload.reviewer,username:payload.username,result:payload.result,opinion:payload.opinion||'',signature:payload.signature,signatureId:uploaded.id,signatureUploadedAt:uploaded.uploadedAt,checkedMaterials:payload.checkedMaterials||[],materialReviews:payload.materialReviews||{},duties:payload.duties||{},department:payload.department||'',formVersion:3,time};
  node.status=payload.result==='通过'?'已通过':'不通过';node.history=[...(node.history||[]),event];node.last=event;
  if(payload.result==='通过'){flow.current=index+1;if(flow.current<2)flow.nodes[flow.current].status='待审核';}
  else {flow.current=index;for(let i=index+1;i<2;i++)flow.nodes[i].status='未到达';}
