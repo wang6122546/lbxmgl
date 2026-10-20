@@ -60,3 +60,6 @@
 
 ## 2026-10-20 评审优化
 六项资料、审查跳转、逐项结论、一审履职频次、二审意见、右侧审核时间线及退场/延期弹层均已接入既有页面与Repository。变更、验证及字典边界见 [评审调整](reference/REVIEW_UPDATE_2026-10-20.md)。
+
+## 来宾项目表单（2026-10-20，仅本地）
+共用选人、图片上传/预览、关联企业见 components/project-form.js；目录配置见 config/project-directory.config.js；企业引用同步见 services/project-partners-service.js。保存与取消按父表单草稿处理。说明见 reference/PROJECT_FORM_LOCAL_2026-10-20.md。未经用户明确指令，不提交、不推送。

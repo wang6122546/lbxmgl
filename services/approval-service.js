@@ -1,3 +1,4 @@
+import {getSignature} from './signature-service.js';
 import {repo} from './repository.js';
 import {approvalNodes,assignedApprover,materials,reviewResults} from '../config/project-approval.config.js';
 export function approvalState(project){
@@ -12,6 +13,8 @@ export async function submitApproval(projectId,payload){
  if(payload.nodeId!==approvalNodes[flow.current].id)throw Error('审批节点已变化，请刷新后再试');
  if(!['通过','不通过'].includes(payload.result))throw Error('请选择审核结果');
  if(!payload.signature)throw Error('请完成签字');
+ const uploaded=payload.signatureId?await getSignature(payload.signatureId):null;
+ if(!uploaded||uploaded.projectId!==projectId||uploaded.nodeId!==payload.nodeId||uploaded.username!==payload.username||uploaded.image!==payload.signature)throw Error('请先上传当前节点的签字');
  if(payload.result==='不通过'&&!payload.rejectReason?.trim())throw Error('请输入不通过原因');
  if(flow.current===0){
   for(const material of materials){
@@ -21,7 +24,7 @@ export async function submitApproval(projectId,payload){
   if(!payload.duties?.leadDept?.frequency||!payload.duties?.supervisor?.frequency)throw Error('请选择履职频次');
  }
  const index=flow.current,node=flow.nodes[index],time=new Date().toISOString();
- const event={nodeId:node.id,nodeLabel:approvalNodes[index].label,reviewer:payload.reviewer,username:payload.username,result:payload.result,opinion:payload.opinion||'',signature:payload.signature,checkedMaterials:payload.checkedMaterials||[],materialReviews:payload.materialReviews||{},duties:payload.duties||{},rejectReason:payload.rejectReason||'',department:payload.department||'',formVersion:3,time};
+ const event={nodeId:node.id,nodeLabel:approvalNodes[index].label,reviewer:payload.reviewer,username:payload.username,result:payload.result,opinion:payload.opinion||'',signature:payload.signature,signatureId:uploaded.id,signatureUploadedAt:uploaded.uploadedAt,checkedMaterials:payload.checkedMaterials||[],materialReviews:payload.materialReviews||{},duties:payload.duties||{},rejectReason:payload.rejectReason||'',department:payload.department||'',formVersion:3,time};
  node.status=payload.result==='通过'?'已通过':'不通过';node.history=[...(node.history||[]),event];node.last=event;
  if(payload.result==='通过'){flow.current=index+1;if(flow.current<2)flow.nodes[flow.current].status='待审核';}
  else {flow.current=index;for(let i=index+1;i<2;i++)flow.nodes[i].status='未到达';}
